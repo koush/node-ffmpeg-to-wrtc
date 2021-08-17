@@ -6,6 +6,11 @@ function sendWebsocketMessage(ws, data) {
     ws.send(JSON.stringify(data));
 }
 
+async function toggleMute() {
+    const video = document.getElementById('media');
+    video.muted = !video.muted;
+}
+
 async function connect() {
     const video = document.getElementById('media');
 

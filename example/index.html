@@ -9,8 +9,9 @@
         <div>
             <div>Ensure you have set up your RTSP Url in serve.ts.</div>
             <button onclick="javascript:connect()">Connect</button>
+            <button onclick="javascript:toggleMute()">Toggle Audio</button>
         </div>
-        <video id='media' width="100%" height="100%" class="castMediaElement" playsinline autoplay></video>
+        <video id='media' muted width="100%" height="100%" class="castMediaElement" playsinline autoplay></video>
     </div>
 </body>
 
