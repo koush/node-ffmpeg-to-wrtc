@@ -1,6 +1,7 @@
 import EventEmitter, { once } from "events";
 import net from 'net';
 import child_process from 'child_process';
+import os from 'os';
 
 const wrtc = require('wrtc');
 Object.assign(global, wrtc);
@@ -113,7 +114,11 @@ export async function createAudioVideoSource(url: string): Promise<AVSource> {
     args.push('-f', 'rawvideo');
     args.push(`tcp://127.0.0.1:${videoPort}`);
 
-    const cp = child_process.spawn('ffmpeg', args, {
+    let ffmpeg = 'ffmpeg';
+    if (os.platform() === 'win32') {
+        ffmpeg += '.exe';
+    }
+    const cp = child_process.spawn(ffmpeg, args, {
         // stdio: 'ignore',
     });
     cp.on('error', e => console.error('ffmpeg error', e));
